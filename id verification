@@ -1,5 +1,6 @@
 package Bwisit;
 
+package Bwisit;
 
 import java.util.Scanner;
 import java.util.HashMap;
@@ -7,12 +8,31 @@ import java.util.HashMap;
 public class forIDVerification {
 
     public static boolean Id() {
+    	
+    	class Person {
+    	    private String name;
+    	    private int age;
 
+    	    public Person(String name, int age) {
+    	        this.name = name;
+    	        this.age = age;
+    	    }
+
+    	    // Getters
+    	    public String getName() {
+    	        return name;
+    	    }
+
+    	    public int getAge() {
+    	        return age;
+    	    }
+    	}
         Scanner sc = new Scanner(System.in);
-        HashMap<Integer, String> IdNames = new HashMap<>();
-        IdNames.put(9812312, "Juan Dela Cruz");
-        IdNames.put(1234512, "Maria Clara");
-        IdNames.put(6789012, "Jose Rizal");
+        HashMap<Integer, Person> IdPersons = new HashMap<>();
+
+        IdPersons.put(9812312, new Person("Juan Dela Cruz", 65));
+        IdPersons.put(1234512, new Person("Maria Clara", 70));
+        IdPersons.put(6789012, new Person("Jose Rizal", 68));
 
         System.out.print("Do you have Senior Citizen Card? (Y or N): ");
         String answer = sc.next();
@@ -46,10 +66,12 @@ public class forIDVerification {
                 }
             }
 
-            if (IdNames.containsKey(IdNumber)) {
+            if (IdPersons.containsKey(IdNumber)) {
+                Person person = IdPersons.get(IdNumber);
                 System.out.println("\nVerified!");
-                String name = IdNames.get(IdNumber);
-                System.out.println("You’re: " + name);
+                System.out.println("You’re: " + person.getName());
+                System.out.println("Your age is: " + person.getAge());
+            
 
                 return true;
             } else {
